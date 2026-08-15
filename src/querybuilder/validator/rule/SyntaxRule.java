@@ -18,7 +18,7 @@ public class SyntaxRule implements IRule {
             String accepted =
                     resolveFunction(content, calledFunctions[i], i, supportedFunctions, validator);
             if (accepted != null) {
-                query.getValidFucntions().add(accepted);
+                query.getValidFunctions().add(accepted);
             }
         }
     }

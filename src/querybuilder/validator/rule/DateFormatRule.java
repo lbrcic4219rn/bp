@@ -15,7 +15,7 @@ public class DateFormatRule implements IRule {
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
         String content = query.getContent();
-        boolean hasDate = query.getValidFucntions().contains("Date");
+        boolean hasDate = query.getValidFunctions().contains("Date");
         if (hasDate) {
             String functionWithArgs =
                     content.substring(
@@ -37,7 +37,7 @@ public class DateFormatRule implements IRule {
                 validator.pushFeedback(
                         "Date argument (1st) needs to be surrounded by quotes in query: "
                                 + query.getName());
-                query.getValidFucntions().remove("Date");
+                query.getValidFunctions().remove("Date");
                 return;
             }
             date = date.substring(1, date.length() - 1);
@@ -47,7 +47,7 @@ public class DateFormatRule implements IRule {
                         "Date argument (1st) needs to be in the following format: dd/mm/yyyy for"
                                 + " query: "
                                 + query.getName());
-                query.getValidFucntions().remove("Date");
+                query.getValidFunctions().remove("Date");
                 return;
             }
             if (dateSegments[0].length() != 2
@@ -57,7 +57,7 @@ public class DateFormatRule implements IRule {
                         "Date argument (1st) needs to be in the following format: dd/mm/yyyy for"
                                 + " query: "
                                 + query.getName());
-                query.getValidFucntions().remove("Date");
+                query.getValidFunctions().remove("Date");
             }
         }
     }

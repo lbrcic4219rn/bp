@@ -19,14 +19,14 @@ public class AggregationAliasMustExistIfHaving implements IRule {
             return;
         }
         for (String aggregation : AGGREGATIONS) {
-            if (query.getValidFucntions().contains(aggregation)) {
+            if (query.getValidFunctions().contains(aggregation)) {
                 checkAlias(query, supportedFunctions, validator, aggregation);
             }
         }
     }
 
     private boolean hasAnyHaving(Query query) {
-        List<String> valid = query.getValidFucntions();
+        List<String> valid = query.getValidFunctions();
         return valid.contains("Having")
                 || valid.contains("AndHaving")
                 || valid.contains("OrHaving");
@@ -45,7 +45,7 @@ public class AggregationAliasMustExistIfHaving implements IRule {
                             + ") must contain alias--"
                             + FOUND_FOR_QUERY
                             + query.getName());
-            query.getValidFucntions().remove(aggregation);
+            query.getValidFunctions().remove(aggregation);
         }
     }
 }

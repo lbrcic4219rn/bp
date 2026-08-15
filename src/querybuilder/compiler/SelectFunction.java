@@ -7,7 +7,7 @@ import java.util.List;
 public class SelectFunction extends Function {
 
     String pattern = "SELECT ";
-    String res = ""; // krajnji rezultat ce biti npr: SELECT MANAGER_ID, LOCATION_ID
+    String res = "";
 
     public SelectFunction(String name, int priority) {
         super(name, priority);
@@ -28,6 +28,7 @@ public class SelectFunction extends Function {
         return res;
     }
 
+    @Override
     public String getRes() {
         return res;
     }

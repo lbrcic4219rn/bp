@@ -15,7 +15,7 @@ public class TableModel extends DefaultTableModel {
         if (rows == null || rows.isEmpty()) {
             Vector<Object> columnV = new Vector<>();
             Vector<Vector<Object>> dataV = new Vector<>(0);
-            setDataVector(dataV, columnV); // setujemo prikaz prazne tabele
+            setDataVector(dataV, columnV);
             return;
         }
 

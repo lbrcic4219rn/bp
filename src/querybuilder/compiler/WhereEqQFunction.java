@@ -1,17 +1,18 @@
 package querybuilder.compiler;
 
+import lombok.Getter;
+
 import querybuilder.validator.Query;
 
 import java.util.List;
 
 public class WhereEqQFunction extends Function {
 
-    private String res =
-            ""; // krajnji rez je formata npr: where job_id =; znaci bez zagrada i uopste celog
-    // naziva subquery-ja;to se setuje u compiler-u
+    private String res = "";
+
     private static final String PATTERN_PART_1 = "WHERE ";
     private static final String PATTERN_PART_2 = "= ";
-    private String subQuery;
+    @Getter private String subQuery;
 
     public WhereEqQFunction(String name, int priority) {
         super(name, priority);
@@ -32,9 +33,5 @@ public class WhereEqQFunction extends Function {
         this.subQuery = args.get(1);
         setRes(res);
         return res;
-    }
-
-    public String getSubQuery() {
-        return subQuery;
     }
 }

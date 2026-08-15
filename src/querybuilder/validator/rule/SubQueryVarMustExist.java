@@ -16,7 +16,7 @@ public class SubQueryVarMustExist implements IRule {
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
         String content = query.getContent();
-        List<String> valid = query.getValidFucntions();
+        List<String> valid = query.getValidFunctions();
         boolean hasWhereInQ = valid.contains(WHERE_IN_Q);
         boolean hasWhereEqQ = valid.contains(WHERE_EQ_Q);
 

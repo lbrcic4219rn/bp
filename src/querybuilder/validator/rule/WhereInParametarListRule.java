@@ -9,8 +9,8 @@ public class WhereInParametarListRule implements IRule {
     @Override
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
-        boolean hasWhereIn = query.getValidFucntions().contains("WhereIn");
-        boolean hasParametarList = query.getValidFucntions().contains("ParametarList");
+        boolean hasWhereIn = query.getValidFunctions().contains("WhereIn");
+        boolean hasParametarList = query.getValidFunctions().contains("ParametarList");
         if (!hasWhereIn && hasParametarList) {
             validator.pushFeedback(
                     "ParametarList can only be used if WhereIn fucntion is used and or is valid in"

@@ -21,7 +21,7 @@ public class ArgNumberRule implements IRule {
     @Override
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
-        query.getValidFucntions()
+        query.getValidFunctions()
                 .removeIf(
                         currentFunction ->
                                 !isValid(query, supportedFunctions, validator, currentFunction));
@@ -71,7 +71,7 @@ public class ArgNumberRule implements IRule {
                     "Problem with quotes and or , operator for function: " + currentFunction);
             return SingleArgResult.REMOVE;
         }
-        if (numberOfQuotes > 0 && !isQuoted(args)) {
+        if (numberOfQuotes > 0 && isNotQuoted(args)) {
             validator.pushFeedback(
                     "Quotes need to be at the start and end of a string for attribute: "
                             + args
@@ -114,7 +114,7 @@ public class ArgNumberRule implements IRule {
                                 + FOR_FUNCTION
                                 + currentFunction);
                 invalid = true;
-            } else if (argumentQuoteNo > 0 && !isQuoted(argument)) {
+            } else if (argumentQuoteNo > 0 && isNotQuoted(argument)) {
                 validator.pushFeedback(
                         "Quotes need to be at the start and end of a string for attribute: "
                                 + argument
@@ -146,8 +146,8 @@ public class ArgNumberRule implements IRule {
                 .replaceAll("\\s", "");
     }
 
-    private boolean isQuoted(String value) {
-        return value.charAt(0) == '"' && value.charAt(value.length() - 1) == '"';
+    private boolean isNotQuoted(String value) {
+        return value.charAt(0) != '"' || value.charAt(value.length() - 1) != '"';
     }
 
     private int quoteCount(String str) {

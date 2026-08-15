@@ -19,7 +19,7 @@ public class NonAggregationElementsInGroupByRule implements IRule {
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
         String content = query.getContent();
-        List<String> valid = query.getValidFucntions();
+        List<String> valid = query.getValidFunctions();
 
         List<String> aggregationArguments = new ArrayList<>();
         for (String aggregation : AGGREGATIONS) {

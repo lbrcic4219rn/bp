@@ -1,5 +1,7 @@
 package querybuilder.compiler;
 
+import lombok.Getter;
+
 import querybuilder.validator.Query;
 
 import java.util.List;
@@ -7,8 +9,8 @@ import java.util.List;
 public class QueryFunction extends Function {
 
     private static final String PATTERN = "FROM ";
-    private String res = ""; // uvek je na kraju formata npr:  FROM Departments ;
-    private String tableName;
+    private String res = "";
+    @Getter private String tableName;
 
     public QueryFunction(String name, int priority) {
         super(name, priority);
@@ -30,11 +32,8 @@ public class QueryFunction extends Function {
         return res;
     }
 
+    @Override
     public String getRes() {
         return res;
-    }
-
-    public String getTableName() {
-        return tableName;
     }
 }

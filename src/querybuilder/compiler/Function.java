@@ -1,10 +1,15 @@
 package querybuilder.compiler;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import querybuilder.validator.Query;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public abstract class Function {
 
     private final int priority;
@@ -20,47 +25,12 @@ public abstract class Function {
 
     protected abstract String parseQuery(Query q);
 
-    public String getRes() {
-        return res;
-    }
-
-    public void setRes(String res) {
-        this.res = res;
-    }
-
-    public int getAliasPosition() {
-        return aliasPosition;
-    }
-
-    public void setAliasPosition(int aliasPosition) {
-        this.aliasPosition = aliasPosition;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public int getIndexInStringWhereStarts(String str, String lookingFor) {
         return str.indexOf(lookingFor);
     }
 
-    public String getAlias() {
-        return alias;
-    }
+    public List<String> getArgsThatAreNotAllString(int idx, String s) {
 
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public List<String> getArgsThatAreNotAllString(
-            int idx,
-            String s) { // dohvata argumente u zagradi; argumenti mogu a ne moraju da budu pod "",
-        // bitno je samo
-        // da su razdvojeni zarezima
         List<String> args = new ArrayList<>();
         int open = s.indexOf('(', idx);
         String help = "";

@@ -62,19 +62,14 @@ public class MSSQLrepository implements Repository {
                     rows.add(row);
                 }
             }
-        } catch (
-                SQLException
-                        sqle) { // korisnik je uneo nesto sto ne postoji u bazi; posto metoda mora
-            // da vraca listu redova
-            // pravimo red u cijem nazivu cuvamo poruku o gresci, a polja mu setujemo na null; potom
-            // se subs obavestavaju u appcore-u;
+        } catch (SQLException e) {
             Row r = new Row();
-            r.setName(sqle.getMessage());
+            r.setName(e.getMessage());
             r.setFields(null);
             rows.add(r);
             return rows;
-        } catch (Exception e) { // ovde nikad ne bi smelo da se dospe; znaci da postoji neka greska
-            // koja nije ispeglana u validatoru
+        } catch (Exception e) {
+
             LOGGER.log(Level.SEVERE, "Unexpected error while reading table", e);
         } finally {
             this.closeConnection();

@@ -1,17 +1,18 @@
 package querybuilder.compiler;
 
+import lombok.Getter;
+
 import querybuilder.validator.Query;
 
 import java.util.List;
 
 public class WhereInQFunction extends Function {
 
-    private String res =
-            ""; // krajnji rez je formata npr: where job_id in; znaci bez zagrada i uopste celog
-    // naziva subquery-ja;to se setuje u compiler-u
+    private String res = "";
+
     private static final String PATTERN_PART_1 = "WHERE ";
     private static final String PATTERN_PART_2 = "IN ";
-    private String subQuery;
+    @Getter private String subQuery;
 
     public WhereInQFunction(String name, int priority) {
         super(name, priority);
@@ -21,7 +22,7 @@ public class WhereInQFunction extends Function {
     protected String parseQuery(Query q) {
         List<String> args;
         int idx = getIndexInStringWhereStarts(q.getContent(), "WhereInQ");
-        args = getArgsThatAreNotAllString(idx, q.getContent()); // podaci koji nisu pod navodnicima
+        args = getArgsThatAreNotAllString(idx, q.getContent());
 
         res += PATTERN_PART_1;
         res += args.getFirst();
@@ -31,9 +32,5 @@ public class WhereInQFunction extends Function {
         this.subQuery = args.get(1);
         setRes(res);
         return res;
-    }
-
-    public String getSubQuery() {
-        return subQuery;
     }
 }

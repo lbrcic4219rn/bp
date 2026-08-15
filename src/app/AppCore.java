@@ -10,6 +10,8 @@ import gui.IGui;
 import gui.swingimp.SwingGui;
 import gui.swingimp.TableModel;
 
+import lombok.Getter;
+
 import observer.Notification;
 import observer.enums.NotificationCode;
 import observer.implementation.PublisherImplementation;
@@ -25,6 +27,7 @@ import utils.Constants;
 
 import java.util.List;
 
+@Getter
 public class AppCore extends PublisherImplementation {
 
     private static AppCore instance;
@@ -62,7 +65,7 @@ public class AppCore extends PublisherImplementation {
         return settingsImplementation;
     }
 
-    public void readDataFromTable(String fromTable) { // anina metoda
+    public void readDataFromTable(String fromTable) {
 
         List<Row> rows;
         rows = this.database.readDataFromTable(fromTable);
@@ -72,25 +75,5 @@ public class AppCore extends PublisherImplementation {
             return;
         }
         tableModel.setRows(this.database.readDataFromTable(fromTable));
-    }
-
-    public Database getDatabase() {
-        return database;
-    }
-
-    public Settings getSettings() {
-        return settings;
-    }
-
-    public TableModel getTableModel() {
-        return tableModel;
-    }
-
-    public IGui getGui() {
-        return gui;
-    }
-
-    public IQueryBuilder getQueryBuilder() {
-        return queryBuilder;
     }
 }

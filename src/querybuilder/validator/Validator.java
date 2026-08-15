@@ -2,6 +2,8 @@ package querybuilder.validator;
 
 import app.AppCore;
 
+import lombok.Getter;
+
 import observer.Notification;
 import observer.enums.NotificationCode;
 
@@ -14,16 +16,13 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Validator implements IValidator {
-    private Stack<String> feedbackReport = new Stack<>();
+    @Getter private final Stack<String> feedbackReport = new Stack<>();
     private final Map<String, Integer> functionAndAttributes = new HashMap<>();
     private final List<IRule> rules = new ArrayList<>();
-    private List<Query> queries = new ArrayList<>();
+    @Getter private List<Query> queries = new ArrayList<>();
 
-    /** Inicira validne f-je i rules za proveru */
     public Validator() {
-        // -1 proizvoljan br atributa
-        // join mora da prati on
-        // wehrein mora da prati parameterList
+
         functionAndAttributes.put("new Query", 1);
         functionAndAttributes.put("Select", -1);
         functionAndAttributes.put("OrderBy", -1);
@@ -86,7 +85,7 @@ public class Validator implements IValidator {
     }
 
     private void collectFunctions(Query query) {
-        for (String validFunction : query.getValidFucntions()) {
+        for (String validFunction : query.getValidFunctions()) {
             if (validFunction.equals("new Query")) {
                 query.getFunctions().add("Query");
             } else if (!validFunction.equals("ParametarList")) {
@@ -131,18 +130,6 @@ public class Validator implements IValidator {
 
     Map<String, Integer> functionAndAttributes() {
         return functionAndAttributes;
-    }
-
-    public List<Query> getQueries() {
-        return queries;
-    }
-
-    public Stack<String> getFeedbackReport() {
-        return feedbackReport;
-    }
-
-    public void setFeedbackReport(Stack<String> feedbackReport) {
-        this.feedbackReport = feedbackReport;
     }
 
     public void pushFeedback(String error) {

@@ -8,6 +8,7 @@ import observer.enums.NotificationCode;
 import querybuilder.validator.Query;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +21,8 @@ public class Compiler implements ICompiler {
     private static final Set<String> ALIAS_FUNCTIONS = Set.of("Avg", COUNT, "Min", "Max", "Date");
 
     private final List<Function> functions = new ArrayList<>();
-    private final Map<String, String> queryResults =
-            new HashMap<>(); // key je naziv query-ja, value je parsirani string->sluzi za
-    // subquery-je
+    private final Map<String, String> queryResults = new HashMap<>();
+
     private final Map<String, String> aliasesValues = new HashMap<>();
     private String solution;
 
@@ -158,7 +158,7 @@ public class Compiler implements ICompiler {
     }
 
     public void sortFunctions(List<Function> functions) {
-        functions.sort((o1, o2) -> Integer.compare(o1.getPriority(), o2.getPriority()));
+        functions.sort(Comparator.comparingInt(Function::getPriority));
     }
 
     public String findQueryValueWithKey(String name, Map<String, String> queryResults) {

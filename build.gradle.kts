@@ -33,8 +33,15 @@ sourceSets {
     }
 }
 
+val lombokVersion = "1.18.34"
+
 dependencies {
-    implementation(fileTree("lib") { include("*.jar") })
+    implementation(fileTree("lib") { include("jtds-*.jar") })
+
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
     testImplementation(platform("org.junit:junit-bom:5.11.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

@@ -19,7 +19,7 @@ public class OnlyAggregationElementsInHavingRule implements IRule {
     @Override
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
-        List<String> valid = query.getValidFucntions();
+        List<String> valid = query.getValidFunctions();
         String content = query.getContent();
 
         boolean hasAggregation = hasAnyAggregation(valid);

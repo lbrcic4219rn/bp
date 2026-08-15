@@ -2,17 +2,19 @@ package gui.swingimp;
 
 import app.AppCore;
 
+import lombok.Getter;
+
 import java.awt.*;
 
 import javax.swing.*;
 
+@Getter
 public class MainFrame extends JFrame {
 
     private static MainFrame instance = null;
     private JLabel jLabel;
     private JTextArea jTextArea;
     private JTable jTable;
-    private JScrollPane jsp;
     private JButton jButton;
 
     private MainFrame() {}
@@ -61,49 +63,5 @@ public class MainFrame extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-    }
-
-    public static void setInstance(MainFrame instance) {
-        MainFrame.instance = instance;
-    }
-
-    public JTable getjTable() {
-        return jTable;
-    }
-
-    public void setjTable(JTable jTable) {
-        this.jTable = jTable;
-    }
-
-    public JScrollPane getJsp() {
-        return jsp;
-    }
-
-    public void setJsp(JScrollPane jsp) {
-        this.jsp = jsp;
-    }
-
-    public JLabel getjLabel() {
-        return jLabel;
-    }
-
-    public void setjLabel(JLabel jLabel) {
-        this.jLabel = jLabel;
-    }
-
-    public JTextArea getjTextArea() {
-        return jTextArea;
-    }
-
-    public void setjTextArea(JTextArea jTextArea) {
-        this.jTextArea = jTextArea;
-    }
-
-    public JButton getjButton() {
-        return jButton;
-    }
-
-    public void setjButton(JButton jButton) {
-        this.jButton = jButton;
     }
 }

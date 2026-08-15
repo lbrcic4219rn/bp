@@ -9,8 +9,8 @@ public class JoinOnRule implements IRule {
     @Override
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
-        boolean hasJoin = query.getValidFucntions().contains("Join");
-        boolean hasOn = query.getValidFucntions().contains("On");
+        boolean hasJoin = query.getValidFunctions().contains("Join");
+        boolean hasOn = query.getValidFunctions().contains("On");
         if (!hasJoin && hasOn) {
             validator.pushFeedback(
                     "On can only be used if Join fucntion is used and or is valid in query: "

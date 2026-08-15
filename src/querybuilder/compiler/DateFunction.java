@@ -5,9 +5,8 @@ import querybuilder.validator.Query;
 import java.util.List;
 
 public class DateFunction extends Function {
-    // String s = "SELECT last_name, hire_date FROM employees WHERE hire_date >
-    // CONVERT(DATETIME,'17/06/2003', 103)";//primer generisanog sql-a za datum
-    String pattern = "CONVERT(DATETIME,'"; // CONVERT(DATETIME,'17/06/2003', 103)
+
+    String pattern = "CONVERT(DATETIME,'";
     String res = "";
 
     public DateFunction(String name, int priority) {
@@ -15,7 +14,7 @@ public class DateFunction extends Function {
     }
 
     @Override
-    protected String parseQuery(Query q) { // Date("dd-mm-yyyy", "alias")
+    protected String parseQuery(Query q) {
         int idx = getIndexInStringWhereStarts(q.getContent(), "Date");
         List<String> args;
         args = getArgsThatAreNotAllString(idx, q.getContent());
