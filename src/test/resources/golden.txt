@@ -1,0 +1,169 @@
+SOURCE: var a = new Query("departments").Select("manager_id", "location_id")
+  QUERY name=a content= a = new Query("departments").Select("manager_id", "location_id") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select] 
+SOURCE: var a = new Query("departments").Select("manager_id").OrderBy("manager_id")
+  QUERY name=a content= a = new Query("departments").Select("manager_id").OrderBy("manager_id") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, OrderBy] 
+SOURCE: var a = new Query("employees").Select("last_name").OrderByDesc("last_name")
+  QUERY name=a content= a = new Query("employees").Select("last_name").OrderByDesc("last_name") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, OrderByDesc] 
+SOURCE: var a = new Query("employees").Select("last_name").Where("job_id","=","IT_PROG")
+  QUERY name=a content= a = new Query("employees").Select("last_name").Where("job_id","=","IT_PROG") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Where] 
+SOURCE: var a = new Query("employees").Select("last_name").Where("job_id","=","IT_PROG").AndWhere("manager_id","=","100")
+  QUERY name=a content= a = new Query("employees").Select("last_name").Where("job_id","=","IT_PROG").AndWhere("manager_id","=","100") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Where, AndWhere] 
+SOURCE: var a = new Query("employees").Select("last_name").Where("job_id","=","IT_PROG").OrWhere("manager_id","=","100")
+  QUERY name=a content= a = new Query("employees").Select("last_name").Where("job_id","=","IT_PROG").OrWhere("manager_id","=","100") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Where, OrWhere] 
+SOURCE: var a = new Query("employees").Select("min_salary").WhereBetween("min_salary","1000","5000")
+  QUERY name=a content= a = new Query("employees").Select("min_salary").WhereBetween("min_salary","1000","5000") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, WhereBetween] 
+SOURCE: var a = new Query("employees").Select("last_name").WhereIn("job_id").ParameterList("IT_PROG","SA_REP")
+  QUERY name=a content= a = new Query("employees").Select("last_name").WhereIn("job_id").ParameterList("IT_PROG","SA_REP") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, WhereIn, ParameterList] 
+SOURCE: var a = new Query("employees").Select("last_name").WhereIn("job_id")
+  QUERY name=a content= a = new Query("employees").Select("last_name").WhereIn("job_id") valid=[]
+  FEEDBACK: [When using WhereIn function ParameterList must be used or be valid in query: a]
+  VALIDAFTER: [new Query, Select, WhereIn] 
+SOURCE: var a = new Query("employees").Select("last_name").ParameterList("IT_PROG")
+  QUERY name=a content= a = new Query("employees").Select("last_name").ParameterList("IT_PROG") valid=[]
+  FEEDBACK: [ParameterList can only be used if WhereIn function is used and or is valid in query: a]
+  VALIDAFTER: [new Query, Select, ParameterList] 
+SOURCE: var a = new Query("jobs").Select("job_title").Join("jobs").On("jobs.job_id","=","employees.job_id")
+  QUERY name=a content= a = new Query("jobs").Select("job_title").Join("jobs").On("jobs.job_id","=","employees.job_id") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Join, On] 
+SOURCE: var a = new Query("jobs").Select("job_title").Join("jobs")
+  QUERY name=a content= a = new Query("jobs").Select("job_title").Join("jobs") valid=[]
+  FEEDBACK: [When using Join function On must be used or be valid in query: a]
+  VALIDAFTER: [new Query, Select, Join] 
+SOURCE: var a = new Query("jobs").Select("job_title").On("jobs.job_id","=","employees.job_id")
+  QUERY name=a content= a = new Query("jobs").Select("job_title").On("jobs.job_id","=","employees.job_id") valid=[]
+  FEEDBACK: [On can only be used if Join function is used and or is valid in query: a]
+  VALIDAFTER: [new Query, Select, On] 
+SOURCE: var a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id")
+  QUERY name=a content= a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Count, GroupBy] 
+SOURCE: var a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id").Having("br",">","5")
+  QUERY name=a content= a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id").Having("br",">","5") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Count, GroupBy, Having] 
+SOURCE: var a = new Query("employees").Select("job_id").Having("br",">","5")
+  QUERY name=a content= a = new Query("employees").Select("job_id").Having("br",">","5") valid=[]
+  FEEDBACK: [No valid aggregation arguments/functions found but has having (having can only use aggregation function alias query: a]
+  VALIDAFTER: [new Query, Select, Having] 
+SOURCE: var a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id").Having("br",">","5").AndHaving("br","<","9")
+  QUERY name=a content= a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id").Having("br",">","5").AndHaving("br","<","9") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Count, GroupBy, Having, AndHaving] 
+SOURCE: var a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id").Having("br",">","5").OrHaving("br","<","9")
+  QUERY name=a content= a = new Query("employees").Select("job_id").Count("employees","br").GroupBy("job_id").Having("br",">","5").OrHaving("br","<","9") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, Count, GroupBy, Having, OrHaving] 
+SOURCE: var a = new Query("employees").Select("min_salary").Avg("min_salary","prosek")
+  QUERY name=a content= a = new Query("employees").Select("min_salary").Avg("min_salary","prosek") valid=[]
+  FEEDBACK: [GroupBy function is not declared and or is wrong -- Non Aggregation elements must me in GroupBY query: a]
+  VALIDAFTER: [new Query, Select, Avg] 
+SOURCE: var a = new Query("employees").Select("min_salary").Max("min_salary","maks")
+  QUERY name=a content= a = new Query("employees").Select("min_salary").Max("min_salary","maks") valid=[]
+  FEEDBACK: [GroupBy function is not declared and or is wrong -- Non Aggregation elements must me in GroupBY query: a]
+  VALIDAFTER: [new Query, Select, Max] 
+SOURCE: var a = new Query("employees").Select("min_salary").Min("min_salary","mini")
+  QUERY name=a content= a = new Query("employees").Select("min_salary").Min("min_salary","mini") valid=[]
+  FEEDBACK: [GroupBy function is not declared and or is wrong -- Non Aggregation elements must me in GroupBY query: a]
+  VALIDAFTER: [new Query, Select, Min] 
+SOURCE: var a = new Query("employees").Select("hire_date").Date("hire_date","17/06/2003")
+  QUERY name=a content= a = new Query("employees").Select("hire_date").Date("hire_date","17/06/2003") valid=[]
+  FEEDBACK: [Date argument (1st) needs to be in the following format: dd/mm/yyyy for query: a]
+  VALIDAFTER: [new Query, Select] 
+SOURCE: var a = new Query("employees").Select("last_name").WhereStartsWith("last_name","A")
+  QUERY name=a content= a = new Query("employees").Select("last_name").WhereStartsWith("last_name","A") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, WhereStartsWith] 
+SOURCE: var a = new Query("employees").Select("last_name").WhereEndsWith("last_name","z")
+  QUERY name=a content= a = new Query("employees").Select("last_name").WhereEndsWith("last_name","z") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, WhereEndsWith] 
+SOURCE: var a = new Query("employees").Select("last_name").WhereContains("last_name","an")
+  QUERY name=a content= a = new Query("employees").Select("last_name").WhereContains("last_name","an") valid=[]
+  FEEDBACK: []
+  VALIDAFTER: [new Query, Select, WhereContains] 
+SOURCE: var a = new Query("jobs").Select("job_id") var b = new Query("employees").Select("job_id").WhereInQ("job_id","a")
+  QUERY name=a content= a = new Query("jobs").Select("job_id")  valid=[]
+  QUERY name=b content= b = new Query("employees").Select("job_id").WhereInQ("job_id","a") valid=[]
+  FEEDBACK: [Query: "a" not found for query: b]
+  VALIDAFTER: [new Query, Select] [new Query, Select, WhereInQ] 
+SOURCE: var a = new Query("jobs").Select("job_id") var b = new Query("employees").Select("job_id").WhereEqQ("job_id","a")
+  QUERY name=a content= a = new Query("jobs").Select("job_id")  valid=[]
+  QUERY name=b content= b = new Query("employees").Select("job_id").WhereEqQ("job_id","a") valid=[]
+  FEEDBACK: [Query: "a" not found for query: b]
+  VALIDAFTER: [new Query, Select] [new Query, Select, WhereEqQ] 
+SOURCE: var b = new Query("employees").Select("job_id").WhereInQ("job_id","zzz")
+  QUERY name=b content= b = new Query("employees").Select("job_id").WhereInQ("job_id","zzz") valid=[]
+  FEEDBACK: [Query: "zzz" not found for query: b]
+  VALIDAFTER: [new Query, Select, WhereInQ] 
+SOURCE: new Query("departments").Select("manager_id")
+  FEEDBACK: [No variables declared]
+  VALIDAFTER: 
+SOURCE: 
+  FEEDBACK: [No variables declared]
+  VALIDAFTER: 
+SOURCE: var a = new Query("departments"
+  QUERY name=a content= a = new Query("departments" valid=[]
+  FEEDBACK: [Missing ) for function:  new Query("departments"]
+  VALIDAFTER: [] 
+SOURCE: var a = new Query().Select()
+  QUERY name=a content= a = new Query().Select() valid=[]
+  FEEDBACK: [Function can not have zero arguments for function: new Query, Function can not have zero arguments for function: Select]
+  VALIDAFTER: [] 
+SOURCE: var a = new Query("departments").Select()
+  QUERY name=a content= a = new Query("departments").Select() valid=[]
+  FEEDBACK: [Function can not have zero arguments for function: Select]
+  VALIDAFTER: [new Query] 
+SOURCE: var 1a = new Query("departments").Select("manager_id")
+  FEEDBACK: [Variable name cant start with special characters or numbers statement no: 1]
+  VALIDAFTER: 
+SOURCE: var a = new Query("departments").Bogus("x")
+  QUERY name=a content= a = new Query("departments").Bogus("x") valid=[]
+  FEEDBACK: [Unknown function: Bogus]
+  VALIDAFTER: [new Query] 
+SOURCE: var a = new Query("employees").Select("hire_date").Date("hire_date","2003-06-17")
+  QUERY name=a content= a = new Query("employees").Select("hire_date").Date("hire_date","2003-06-17") valid=[]
+  FEEDBACK: [Date argument (1st) needs to be in the following format: dd/mm/yyyy for query: a]
+  VALIDAFTER: [new Query, Select] 
+SOURCE: var a = new Query("employees").Select("job_id").Count("employees","br")
+  QUERY name=a content= a = new Query("employees").Select("job_id").Count("employees","br") valid=[]
+  FEEDBACK: [GroupBy function is not declared and or is wrong -- Non Aggregation elements must me in GroupBY query: a]
+  VALIDAFTER: [new Query, Select, Count] 
+SOURCE: var a = new Query("employees").Select("job_id","last_name").Count("employees","br").GroupBy("job_id")
+  QUERY name=a content= a = new Query("employees").Select("job_id","last_name").Count("employees","br").GroupBy("job_id") valid=[]
+  FEEDBACK: ["last_name" from select must be in groupBy function]
+  VALIDAFTER: [new Query, Select, Count, GroupBy] 
+CHECKVAR 0 a -> true
+CHECKVAR 0 1a -> false
+CHECKVAR 0 a_b -> true
+CHECKVAR 0  -> true
+CHECKVAR 0 abc -> true
+CHECKVAR 0 a1 -> true
+CHECKVAR 1 a -> true
+CHECKVAR 1 1a -> false
+CHECKVAR 1 a_b -> true
+CHECKVAR 1  -> true
+CHECKVAR 1 abc -> true
+CHECKVAR 1 a1 -> true
+CHECKVAR 2 a -> true
+CHECKVAR 2 1a -> false
+CHECKVAR 2 a_b -> true
+CHECKVAR 2  -> true
+CHECKVAR 2 abc -> true
+CHECKVAR 2 a1 -> true

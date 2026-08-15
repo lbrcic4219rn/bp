@@ -1,0 +1,44 @@
+CASE [Query, Select]
+  RESULT: SELECT manager_id, location_id FROM departments 
+CASE [Query, Select, OrderBy]
+  RESULT: SELECT manager_id FROM departments ORDER BY manager_id 
+CASE [Query, Select, OrderByDesc]
+  RESULT: SELECT last_name FROM employees ORDER BY last_name  DESC 
+CASE [Query, Select, Where]
+  RESULT: SELECT last_name FROM employees WHERE job_id = IT_PROG 
+CASE [Query, Select, Where, AndWhere]
+  RESULT: SELECT last_name FROM employees WHERE job_id = IT_PROG AND manager_id = 100 
+CASE [Query, Select, Where, OrWhere]
+  RESULT: SELECT last_name FROM employees WHERE job_id = IT_PROG OR manager_id = 100 
+CASE [Query, Select, WhereBetween]
+  RESULT: SELECT min_salary FROM employees WHERE min_salary BETWEEN  1000 AND  5000 
+CASE [Query, Select, WhereIn]
+  RESULT: SELECT last_name FROM employees WHERE job_id IN (IT_PROG, SA_REP) 
+CASE [Query, Select, Join]
+  RESULT: SELECT job_title FROM jobs JOIN employees ON jobs.job_id=employees.job_id 
+CASE [Query, Select, Count, GroupBy]
+  RESULT: SELECT job_id , COUNT(employees) AS br FROM employees GROUP BY job_id 
+CASE [Query, Select, Count, GroupBy, Having]
+  RESULT: SELECT job_id , COUNT(employees) AS br FROM employees GROUP BY job_id HAVING COUNT(employees) > 5 
+CASE [Query, Select, Count, GroupBy, Having, AndHaving]
+  RESULT: SELECT job_id , COUNT(employees) AS br FROM employees GROUP BY job_id HAVING COUNT(employees) > 5 AND COUNT(employees) < 9
+CASE [Query, Select, Count, GroupBy, Having, OrHaving]
+  RESULT: SELECT job_id , COUNT(employees) AS br FROM employees GROUP BY job_id HAVING COUNT(employees) > 5 OR COUNT(employees) < 9
+CASE [Query, Select, Avg]
+  RESULT: SELECT min_salary , AVG(min_salary) AS prosek FROM employees 
+CASE [Query, Select, Max]
+  RESULT: SELECT min_salary , MAX(min_salary) AS maks FROM employees 
+CASE [Query, Select, Min]
+  RESULT: SELECT min_salary , MIN(min_salary) AS mini FROM employees 
+CASE [Query, Select, WhereStartsWith]
+  RESULT: SELECT last_name FROM employees WHERE last_name LIKE 'A%'
+CASE [Query, Select, WhereEndsWith]
+  RESULT: SELECT last_name FROM employees WHERE last_name LIKE '%z'
+CASE [Query, Select, WhereContains]
+  RESULT: SELECT last_name FROM employees WHERE last_name LIKE '%an%'
+CASE [Query, Select, Join]
+  RESULT: null
+CASE [Select]
+  RESULT: SELECT last_name 
+CASE [Query, Select, Date]
+  RESULT: SELECT hire_date FROM employees 

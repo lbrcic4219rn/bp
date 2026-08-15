@@ -14,27 +14,10 @@ java {
     }
 }
 
-sourceSets {
-    main {
-        java {
-            setSrcDirs(listOf("src"))
-        }
-        resources {
-            setSrcDirs(emptyList<String>())
-        }
-    }
-    test {
-        java {
-            setSrcDirs(listOf("test"))
-        }
-        resources {
-            setSrcDirs(emptyList<String>())
-        }
-    }
-}
-
 dependencies {
-    implementation(libs.jtds)
+    implementation(libs.mssql.jdbc)
+    implementation(libs.hikaricp)
+    runtimeOnly(libs.slf4j.nop)
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
@@ -64,7 +47,7 @@ dependencies {
 }
 
 fun javaSources(): List<String> =
-    listOf("src", "test")
+    listOf("src/main/java", "src/test/java")
         .filter { file(it).isDirectory }
         .flatMap { fileTree(it) { include("**/*.java") }.files }
         .map { it.absolutePath }
@@ -100,8 +83,8 @@ sonar {
     properties {
         property("sonar.projectKey", "bp")
         property("sonar.projectName", "bp")
-        property("sonar.sources", "src")
-        property("sonar.tests", "test")
+        property("sonar.sources", "src/main/java")
+        property("sonar.tests", "src/test/java")
         property("sonar.java.source", "21")
         property("sonar.java.binaries", "build/classes/java/main")
         property("sonar.sourceEncoding", "UTF-8")
