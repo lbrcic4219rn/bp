@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Repository {
 
-    List<Row> get(String sql_query);
+    List<Row> get(String sqlQuery);
 }

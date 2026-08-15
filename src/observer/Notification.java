@@ -1,8 +1,6 @@
 package observer;
 
-
 import observer.enums.NotificationCode;
-
 
 public class Notification {
 

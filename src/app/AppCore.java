@@ -5,23 +5,24 @@ import database.DatabaseImplementation;
 import database.MSSQLrepository;
 import database.settings.Settings;
 import database.settings.SettingsImplementation;
+
 import gui.IGui;
-import gui.swingImp.MainFrame;
-import gui.swingImp.SwingGui;
-import gui.swingImp.TableModel;
+import gui.swingimp.SwingGui;
+import gui.swingimp.TableModel;
+
 import observer.Notification;
 import observer.enums.NotificationCode;
 import observer.implementation.PublisherImplementation;
-import queryBuilder.IQueryBuilder;
-import queryBuilder.QueryBuilder;
-import queryBuilder.compiler.Compiler;
-import queryBuilder.validator.Validator;
+
+import querybuilder.IQueryBuilder;
+import querybuilder.QueryBuilder;
+import querybuilder.compiler.Compiler;
+import querybuilder.validator.Validator;
+
 import resource.data.Row;
+
 import utils.Constants;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AppCore extends PublisherImplementation {
@@ -33,16 +34,16 @@ public class AppCore extends PublisherImplementation {
     private IGui gui;
     private IQueryBuilder queryBuilder;
 
-    private AppCore(){
+    private AppCore() {}
 
-    }
-    public static AppCore getInstance(){
-        if (instance==null){
+    public static AppCore getInstance() {
+        if (instance == null) {
             instance = new AppCore();
             instance.initAll();
         }
         return instance;
     }
+
     private void initAll() {
         this.settings = initSettings();
         this.database = new DatabaseImplementation(new MSSQLrepository(this.settings));
@@ -61,15 +62,16 @@ public class AppCore extends PublisherImplementation {
         return settingsImplementation;
     }
 
-    public void readDataFromTable(String fromTable){//anina metoda
+    public void readDataFromTable(String fromTable) { // anina metoda
 
-            List<Row> rows;
-            rows = this.database.readDataFromTable(fromTable);
-            if(rows.size() == 1 && rows.get(0).getFields() == null){
-                this.notifySubscribers(new Notification(NotificationCode.ERROR, rows.get(0).getName()));
-                return;
-            }
-            tableModel.setRows(this.database.readDataFromTable(fromTable));
+        List<Row> rows;
+        rows = this.database.readDataFromTable(fromTable);
+        if (rows.size() == 1 && rows.getFirst().getFields() == null) {
+            this.notifySubscribers(
+                    new Notification(NotificationCode.ERROR, rows.getFirst().getName()));
+            return;
+        }
+        tableModel.setRows(this.database.readDataFromTable(fromTable));
     }
 
     public Database getDatabase() {

@@ -4,7 +4,7 @@ import resource.data.Row;
 
 import java.util.List;
 
-public interface Database{
+public interface Database {
 
-    List<Row> readDataFromTable(String sql_query);
+    List<Row> readDataFromTable(String sqlQuery);
 }
