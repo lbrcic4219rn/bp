@@ -32,7 +32,7 @@ public class Validator implements IValidator {
         functionAndAttributes.put("AndWhere", 3);
         functionAndAttributes.put("WhereBetween", 3);
         functionAndAttributes.put("WhereIn", 1);
-        functionAndAttributes.put("ParametarList", -1);
+        functionAndAttributes.put("ParameterList", -1);
         functionAndAttributes.put("Join", 1);
         functionAndAttributes.put("On", 3);
         functionAndAttributes.put("Date", 2);
@@ -52,7 +52,7 @@ public class Validator implements IValidator {
         rules.add(0, new SyntaxRule());
         rules.add(1, new ArgNumberRule());
         rules.add(2, new DateFormatRule());
-        rules.add(3, new WhereInParametarListRule());
+        rules.add(3, new WhereInParameterListRule());
         rules.add(4, new JoinOnRule());
         rules.add(5, new AggregationAliasMustExistIfHaving());
         rules.add(6, new OnlyAggregationElementsInHavingRule());
@@ -88,7 +88,7 @@ public class Validator implements IValidator {
         for (String validFunction : query.getValidFunctions()) {
             if (validFunction.equals("new Query")) {
                 query.getFunctions().add("Query");
-            } else if (!validFunction.equals("ParametarList")) {
+            } else if (!validFunction.equals("ParameterList")) {
                 query.getFunctions().add(validFunction);
             }
         }

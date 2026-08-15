@@ -5,22 +5,22 @@ import querybuilder.validator.Validator;
 
 import java.util.Map;
 
-public class WhereInParametarListRule implements IRule {
+public class WhereInParameterListRule implements IRule {
     @Override
     public void checkRule(
             Query query, Map<String, Integer> supportedFunctions, Validator validator) {
         boolean hasWhereIn = query.getValidFunctions().contains("WhereIn");
-        boolean hasParametarList = query.getValidFunctions().contains("ParametarList");
-        if (!hasWhereIn && hasParametarList) {
+        boolean hasParameterList = query.getValidFunctions().contains("ParameterList");
+        if (!hasWhereIn && hasParameterList) {
             validator.pushFeedback(
-                    "ParametarList can only be used if WhereIn fucntion is used and or is valid in"
+                    "ParameterList can only be used if WhereIn function is used and or is valid in"
                             + " query: "
                             + query.getName());
             return;
         }
-        if (hasWhereIn && !hasParametarList) {
+        if (hasWhereIn && !hasParameterList) {
             validator.pushFeedback(
-                    "When using WhereIn function ParametarList must be used or be valid in query: "
+                    "When using WhereIn function ParameterList must be used or be valid in query: "
                             + query.getName());
         }
     }

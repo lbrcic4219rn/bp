@@ -33,18 +33,16 @@ sourceSets {
     }
 }
 
-val lombokVersion = "1.18.34"
-
 dependencies {
-    implementation(fileTree("lib") { include("jtds-*.jar") })
+    implementation(libs.jtds)
 
-    compileOnly("org.projectlombok:lombok:$lombokVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
-    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
-    testImplementation(platform("org.junit:junit-bom:5.11.3"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    testCompileOnly(libs.lombok)
+    testAnnotationProcessor(libs.lombok)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.test {
@@ -62,7 +60,7 @@ tasks.withType<JavaCompile>().configureEach {
 val formatter: Configuration = configurations.create("formatter")
 
 dependencies {
-    formatter("com.google.googlejavaformat:google-java-format:1.24.0")
+    formatter(libs.google.java.format)
 }
 
 fun javaSources(): List<String> =
@@ -106,7 +104,6 @@ sonar {
         property("sonar.tests", "test")
         property("sonar.java.source", "21")
         property("sonar.java.binaries", "build/classes/java/main")
-        property("sonar.java.libraries", "lib/*.jar")
         property("sonar.sourceEncoding", "UTF-8")
         property(
             "sonar.host.url",

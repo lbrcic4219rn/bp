@@ -32,9 +32,7 @@ public class AppCore extends PublisherImplementation {
 
     private static AppCore instance;
     private Database database;
-    private Settings settings;
     private TableModel tableModel;
-    private IGui gui;
     private IQueryBuilder queryBuilder;
 
     private AppCore() {}
@@ -48,10 +46,10 @@ public class AppCore extends PublisherImplementation {
     }
 
     private void initAll() {
-        this.settings = initSettings();
-        this.database = new DatabaseImplementation(new MSSQLrepository(this.settings));
+        Settings settings = initSettings();
+        this.database = new DatabaseImplementation(new MSSQLrepository(settings));
         this.tableModel = new TableModel();
-        this.gui = new SwingGui();
+        IGui gui = new SwingGui();
         this.addSubscriber(gui);
         this.queryBuilder = new QueryBuilder(new Validator(), new Compiler());
     }

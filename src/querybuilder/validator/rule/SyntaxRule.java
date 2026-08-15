@@ -33,19 +33,19 @@ public class SyntaxRule implements IRule {
         int start = content.indexOf(calledFunction);
         String fixedFunctionName =
                 content.substring(start - offset, start + calledFunction.length());
-        String trucedFName = fixedFunctionName.replaceAll("\\s", "");
+        String truedFName = fixedFunctionName.replaceAll("\\s", "");
 
         if (fixedFunctionName.indexOf('(') == -1) {
-            validator.pushFeedback("Missing ( for fucntion: " + fixedFunctionName);
+            validator.pushFeedback("Missing ( for function: " + fixedFunctionName);
             return null;
         }
         if (fixedFunctionName.indexOf(')') == -1) {
-            validator.pushFeedback("Missing ) for fucntion: " + fixedFunctionName);
+            validator.pushFeedback("Missing ) for function: " + fixedFunctionName);
             return null;
         }
-        if (trucedFName.indexOf(')') + 1 < trucedFName.length()) {
-            if (trucedFName.indexOf('.') == -1) {
-                validator.pushFeedback("Missing . opperator for fucntion: " + fixedFunctionName);
+        if (truedFName.indexOf(')') + 1 < truedFName.length()) {
+            if (truedFName.indexOf('.') == -1) {
+                validator.pushFeedback("Missing . opperator for function: " + fixedFunctionName);
             } else {
                 validator.pushFeedback("Unknown function: " + fixedFunctionName);
             }

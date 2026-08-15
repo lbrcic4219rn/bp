@@ -12,10 +12,8 @@ import javax.swing.*;
 public class MainFrame extends JFrame {
 
     private static MainFrame instance = null;
-    private JLabel jLabel;
     private JTextArea jTextArea;
     private JTable jTable;
-    private JButton jButton;
 
     private MainFrame() {}
 
@@ -40,7 +38,7 @@ public class MainFrame extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Database app");
 
-        this.jLabel = new JLabel("Enter your query: ");
+        JLabel jLabel = new JLabel("Enter your query: ");
         this.jTextArea = new JTextArea(20, 30);
 
         this.jTextArea.setForeground(new Color(0, 0, 255));
@@ -50,8 +48,8 @@ public class MainFrame extends JFrame {
 
         this.jTable.setModel(AppCore.getInstance().getTableModel());
 
-        this.jButton = new JButton("confirm");
-        this.jButton.addMouseListener(new CnfButtonController());
+        JButton jButton = new JButton("confirm");
+        jButton.addMouseListener(new CnfButtonController());
         this.jTable.setPreferredScrollableViewportSize(new Dimension(500, 400));
         this.jTable.setFillsViewportHeight(true);
 

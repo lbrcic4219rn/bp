@@ -17,7 +17,7 @@ public class WhereInFunction extends Function {
         int idx = getIndexInStringWhereStarts(q.getContent(), "WhereIn");
         List<String> argsWhereIn = getArgsThatAreNotAllString(idx, q.getContent());
 
-        idx = getIndexInStringWhereStarts(q.getContent(), "ParametarList");
+        idx = getIndexInStringWhereStarts(q.getContent(), "ParameterList");
         List<String> args = getArgsThatAreNotAllString(idx, q.getContent());
 
         StringBuilder sb = new StringBuilder(PATTERN_PART_1);

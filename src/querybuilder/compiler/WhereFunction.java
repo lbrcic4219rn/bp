@@ -30,11 +30,10 @@ public class WhereFunction extends Function {
             res += "'";
             res += args.get(2);
             res += "'";
-            res += " ";
         } else {
             res += args.get(2);
-            res += " ";
         }
+        res += " ";
 
         setAlias(args.get(2));
         setAliasPosition(0);

@@ -1,9 +1,12 @@
 package querybuilder.compiler;
 
+import lombok.Getter;
+
 import querybuilder.validator.Query;
 
 import java.util.List;
 
+@Getter
 public class JoinFunction extends Function {
     private static final String PATTERN_PART_1 = "JOIN ";
     private static final String PATTERN_PART_2 = "ON ";
@@ -31,17 +34,13 @@ public class JoinFunction extends Function {
         }
         sb.append(name, 0, cnt).append(" ").append(PATTERN_PART_2);
 
-        for (int i = 0; i < args.size(); i++) {
-            sb.append(args.get(i));
+        for (String arg : args) {
+            sb.append(arg);
         }
         sb.append(" ");
 
         String res = sb.toString();
         setRes(res);
         return res;
-    }
-
-    public String getTableName() {
-        return tableName;
     }
 }
