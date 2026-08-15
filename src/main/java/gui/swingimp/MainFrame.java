@@ -5,6 +5,7 @@ import lombok.Getter;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.Serial;
 import java.util.function.Consumer;
 
 import javax.swing.JButton;
@@ -17,7 +18,7 @@ import javax.swing.WindowConstants;
 
 public class MainFrame extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+    @Serial private static final long serialVersionUID = 1L;
 
     private final transient Consumer<String> onSubmit;
 

@@ -11,21 +11,13 @@ public class Main {
 
     public static void main(String[] args) {
         AppCore core = new AppCore();
-        Runtime.getRuntime().addShutdownHook(new Thread(core::close));
+        Runtime.getRuntime().addShutdownHook(new Thread(core::shutdown));
 
-        boolean started = false;
-        try {
-            SwingUtilities.invokeLater(
-                    () -> {
-                        IGui gui = new SwingGui(core);
-                        core.addSubscriber(gui);
-                        gui.start();
-                    });
-            started = true;
-        } finally {
-            if (!started) {
-                core.close();
-            }
-        }
+        SwingUtilities.invokeLater(
+                () -> {
+                    IGui gui = new SwingGui(core);
+                    core.addSubscriber(gui);
+                    gui.start();
+                });
     }
 }

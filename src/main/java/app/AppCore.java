@@ -66,8 +66,7 @@ public class AppCore extends PublisherImplementation {
         }
     }
 
-    @Override
-    public void close() {
+    public void shutdown() {
         database.close();
     }
 }
